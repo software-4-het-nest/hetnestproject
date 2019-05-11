@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HetNest - Aanbiedingen</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="header :: header">Header</div>
+<div class="container">
+    <div class="text-left">
+        <h1>Lijst van aanbiedingen</h1>
+        <ul style="list-style-type: none;">
+            <li th:each="aanbieding : ${aanbiedingen}">
+                <a th:href="@{/aanbieding.html(id=${aanbieding.id})}">
+                    <span th:text="${aanbieding.naam}"></span>
+                </a>
+            </li>
+        </ul>
+        <a th:href="@{/nieuweAanbieding.html}">Nieuwe aanbieding</a>
+    </div><br/><br/>
+    <div th:replace="footer :: footer">&copy; 2013 The Static Templates</div>
+</div>
+</body>
+</html>

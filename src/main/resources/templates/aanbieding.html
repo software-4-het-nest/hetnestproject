@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Het nest project</title>
+    <title>HetNest - aanbieding</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>Welcome to Aanbieding</h1>
-    <div class="container" th:action="/aanbiedingen" th:object="${aanbiedingData}">
-        <p th:text="${aanbiedingData.getId()}"></p>
-        <p th:text="${aanbiedingData.getNaam()}"></p>
-        <p th:text="${aanbiedingData.getPrijs()}"></p>
-        <p th:text="${aanbiedingData.getType()}"></p>
+<div th:replace="header :: header">Header</div>
+<div class="container">
+    <div class="text-left">
+        <h1>Details van aanbieding</h1>
+        <!--<p><b>Id:</b> <span th:text="${aanbieding.getId()}"></span> </p>-->
+        <p><b>Naam:</b> <span th:text="${aanbieding.getNaam()}"></span> </p>
+        <p><b>Hoeveelheid:</b> <span th:text="${aanbieding.getHoeveelheid()}"></span> </p>
+        <p><b>Prijs:</b> <span th:text="${aanbieding.getPrijs()}"></span> </p>
+        <p><b>Type:</b> <span th:text="${aanbieding.getType()}"></span> </p>
+
+        <p>
+            <a th:href="@{/updateAanbieding.html(id=${aanbieding.id})}">Aanbieding wijzigen</a>
+        </p>
+        <p>
+            <a th:href="@{/aanbiedingVerwijder.html(id=${aanbieding.id})}">Aanbieding verwijderen</a>
+        </p>
+        <a th:href="@{/aanbiedingen.html}">Lijst van alle aanbiedingen</a>
     </div>
+    <div th:replace="footer :: footer"></div>
+</div>
 </body>
 </html>

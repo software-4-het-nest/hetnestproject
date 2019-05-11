@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Het Nest - Dashboard</title>
+    <title>HetNest</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>Dashboard - Het Nest</h1>
-    <a href="/aanbiedingen">Lijst Aanbiedingen</a>
-    <a href="/aanbieding">Aanbieding Maken</a>
+<div th:replace="header :: header">Header</div>
+<div class="container">
+    <a th:href="@{/aanbiedingen.html}" class="btn btn-info">Bekijk aanbiedingen</a>
+    <div th:replace="footer :: footer"></div>
+</div>
 </body>
 </html>

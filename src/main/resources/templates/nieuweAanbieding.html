@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HetNest - aanbieding toevoegen</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="header :: header">Header</div>
+<div class="container">
+    <div class="text-left">
+        <h1>Nieuwe aanbieding</h1>
+        <form method="POST" th:object="${aanbieding}">
+            <div class="form-group">
+                <label>Naam:
+                    <input type="text" class="form-control" th:field="*{naam}"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Hoeveelheid:
+                    <input type="number" class="form-control" th:field="*{hoeveelheid}"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Prijs:
+                    <input type="number" class="form-control" th:field="*{prijs}"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Type:
+                    <input type="text" class="form-control" th:field="*{type}"/>
+                </label>
+            </div>
+            <input name="submit" type="submit" value="save" class="btn btn-primary"/>
+        </form>
+
+    </div>
+    <div th:replace="footer :: footer"></div>
+</div>
+</body>
+</html>
