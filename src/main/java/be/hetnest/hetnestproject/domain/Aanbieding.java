@@ -4,11 +4,12 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "AANBIEDINGEN")
 @Data
-@RequiredArgsConstructor
 public class Aanbieding {
 
     @Id
@@ -16,15 +17,19 @@ public class Aanbieding {
     private long id;
 
     @Column
+    @Min(message = "Hoeveelheid mag niet negatief zijn.", value = 0)
     private int hoeveelheid;
 
     @Column
+    @Min(message = "Prijs mag niet negatief zijn.", value = 0)
     private double prijs;
 
     @Column
+    @NotEmpty(message = "Type mag niet leeg zijn.")
     private String type;
 
     @Column
+    @NotEmpty(message = "Naam mag niet leeg zijn.")
     private String naam;
     
     public Aanbieding()

@@ -17,21 +17,26 @@
             <div class="form-group">
                 <label>Naam:
                     <input type="text" class="form-control" th:field="*{naam}"/>
+                    <form:errors path="naam"></form:errors>
+                    <td th:if="${#fields.hasErrors('naam')}" th:errors="*{naam}">Name Error</td>
                 </label>
             </div>
             <div class="form-group">
                 <label>Hoeveelheid:
                     <input type="number" class="form-control" th:field="*{hoeveelheid}"/>
+                    <td th:if="${#fields.hasErrors('hoeveelheid')}" th:errors="*{hoeveelheid}">Name Error</td>
                 </label>
             </div>
             <div class="form-group">
                 <label>Prijs:
                     <input type="number" class="form-control" th:field="*{prijs}"/>
+                    <td th:if="${#fields.hasErrors('prijs')}" th:errors="*{prijs}">Name Error</td>
                 </label>
             </div>
             <div class="form-group">
                 <label>Type:
                     <input type="text" class="form-control" th:field="*{type}"/>
+                    <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Name Error</td>
                 </label>
             </div>
             <input name="submit" type="submit" value="save" class="btn btn-primary"/>

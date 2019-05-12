@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.ModelMap;
 
@@ -59,7 +60,10 @@ public class AanbiedingController {
     }
 
     @RequestMapping(value = {"/nieuweAanbieding.html"}, method = RequestMethod.POST)
-    public String aanbiedingToevoegen(@ModelAttribute("aanbieding") Aanbieding aanbieding, ModelMap model) {
+    public String aanbiedingToevoegen(@ModelAttribute("aanbieding") @Valid Aanbieding aanbieding, BindingResult result, ModelMap model) {
+
+        if (result.hasErrors()) return "/nieuweAanbieding.html";
+
         Aanbieding toegevoegdAanbieding = hetNestService.addAanbieding(aanbieding.getHoeveelheid(), aanbieding.getPrijs(), aanbieding.getType(), aanbieding.getNaam());
         toegevoegdAanbieding.setHoeveelheid(aanbieding.getHoeveelheid());
         toegevoegdAanbieding.setPrijs(aanbieding.getPrijs());
