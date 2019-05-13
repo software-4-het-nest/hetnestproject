@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login*").permitAll()
+                .antMatchers("/login*", "/aanvragen*", "/hetnestapi*").permitAll()
                 .antMatchers("/","/aanbieding*","/aanbiedingen*","/header*","/footer*").hasAnyAuthority("PRODUCTIELID","MAGAZIJNIER")
                 .antMatchers("/**", "/h2/**").hasAuthority("MAGAZIJNIER")
                 .anyRequest().authenticated()

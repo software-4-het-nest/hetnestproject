@@ -2,6 +2,7 @@ package be.hetnest.hetnestproject.service;
 
 
 import be.hetnest.hetnestproject.domain.Aanbieding;
+import be.hetnest.hetnestproject.domain.Aanvraag;
 import be.hetnest.hetnestproject.formdata.AanbiedingData;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface HetNestService {
     void updateAanbieding(Aanbieding aanbieding);
     void deleteAanbieding (Aanbieding aanbieding);
     void deleteAanbiedingById (long id);
+
+    List<Aanvraag> getAanvragen();
 }

@@ -1,6 +1,8 @@
 package be.hetnest.hetnestproject;
 
+import be.hetnest.hetnestproject.dao.AanvragenRepository;
 import be.hetnest.hetnestproject.dao.UserRepository;
+import be.hetnest.hetnestproject.domain.Aanvraag;
 import be.hetnest.hetnestproject.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,9 @@ public class HetnestprojectApplicationInitDB  implements CommandLineRunner {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    AanvragenRepository aanvragenRepository;
+
     public static String hash(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
@@ -27,6 +32,12 @@ public class HetnestprojectApplicationInitDB  implements CommandLineRunner {
 
         userRepository.save(user);
         userRepository.save(user2);
+
+        Aanvraag aanvraag = new Aanvraag(10, 20.5, "TestType", "TestIngredient");
+        Aanvraag aanvraag2 = new Aanvraag(10, 20.5, "TestType2", "TestIngredient2");
+
+        aanvragenRepository.save(aanvraag);
+        aanvragenRepository.save(aanvraag2);
 
         System.out.println(" -- Database has been initialized --");
     }

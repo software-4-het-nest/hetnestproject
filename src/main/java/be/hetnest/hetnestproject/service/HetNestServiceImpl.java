@@ -1,7 +1,9 @@
 package be.hetnest.hetnestproject.service;
 
 import be.hetnest.hetnestproject.dao.AanbiedingRepository;
+import be.hetnest.hetnestproject.dao.AanvragenRepository;
 import be.hetnest.hetnestproject.domain.Aanbieding;
+import be.hetnest.hetnestproject.domain.Aanvraag;
 import be.hetnest.hetnestproject.formdata.AanbiedingData;
 import lombok.extern.slf4j.Slf4j;
 import be.hetnest.hetnestproject.service.HetNestService;
@@ -19,7 +21,10 @@ public class HetNestServiceImpl implements HetNestService {
 
     @Autowired
     private AanbiedingRepository aanbiedingRepository;
-    
+
+    @Autowired
+    private AanvragenRepository aanvragenRepository;
+
     public HetNestServiceImpl(){}
 
     @Override
@@ -84,4 +89,7 @@ public class HetNestServiceImpl implements HetNestService {
     public void deleteAanbiedingById(long id){
         this.aanbiedingRepository.deleteById(id);
     }
+
+    @Override
+    public List<Aanvraag> getAanvragen() { return this.aanvragenRepository.findAll();}
 }
