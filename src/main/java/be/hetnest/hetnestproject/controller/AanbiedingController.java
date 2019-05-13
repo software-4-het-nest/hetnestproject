@@ -5,6 +5,7 @@ import be.hetnest.hetnestproject.service.HetNestService;
 import be.hetnest.hetnestproject.domain.Aanbieding;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
+/*@PostAuthorize("#model.get('role').user.username = authentication.principal.username")*/
 @RequestMapping("/")
 public class AanbiedingController {
 
