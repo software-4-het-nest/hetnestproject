@@ -15,6 +15,7 @@ public interface HetNestService {
     AanbiedingData prepareAanbiedingData(Aanbieding theAanbieding, boolean timeShift);
     
     Aanbieding addAanbieding(int _hoeveelheid, double _prijs, String _type, String _naam);
+    Aanbieding voegAanbiedingToeREST(Aanbieding aanbieding);
     Aanbieding getAanbiedingById (long id);
     Aanbieding getAanbiedingByName (String naam);
     List<Aanbieding> getAlleAanbiedingen();

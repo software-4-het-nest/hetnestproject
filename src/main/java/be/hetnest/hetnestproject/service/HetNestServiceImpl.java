@@ -92,4 +92,10 @@ public class HetNestServiceImpl implements HetNestService {
 
     @Override
     public List<Aanvraag> getAanvragen() { return this.aanvragenRepository.findAll();}
+
+    @Transactional(propagation= Propagation.REQUIRED,readOnly=false)
+    public Aanbieding voegAanbiedingToeREST(Aanbieding aanbieding) {
+
+        return aanbiedingRepository.save(aanbieding);
+    }
 }

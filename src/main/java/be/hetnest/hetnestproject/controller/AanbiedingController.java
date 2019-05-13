@@ -2,13 +2,15 @@ package be.hetnest.hetnestproject.controller;
 
 import be.hetnest.hetnestproject.service.HetNestService;
 import be.hetnest.hetnestproject.domain.Aanbieding;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.ModelMap;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import java.util.List;
@@ -98,4 +100,10 @@ public class AanbiedingController {
         return "redirect:aanbiedingen.html";
     }
 
+    @RequestMapping(value = {"/externeAanbieding"}, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public @ResponseBody Aanbieding createExterneAanbieding(@RequestBody Aanbieding aanbieding, HttpServletResponse response) throws BindException {
+        hetNestService.voegAanbiedingToeREST(aanbieding);
+        return aanbieding;
+    }
 }
