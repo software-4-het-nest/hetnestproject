@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface AanbiedingRepository extends JpaRepository<Aanbieding, Integer>{
     Aanbieding findById(long id);
-
     List<Aanbieding> findAllByStatus(String status);
     Aanbieding findFirstByOrderByIdDesc();
     Aanbieding findByNaam(String naam);

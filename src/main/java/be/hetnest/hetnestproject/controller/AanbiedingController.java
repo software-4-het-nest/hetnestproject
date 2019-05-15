@@ -1,5 +1,6 @@
 package be.hetnest.hetnestproject.controller;
 
+import be.hetnest.hetnestproject.domain.Ingredient;
 import be.hetnest.hetnestproject.service.HetNestService;
 import be.hetnest.hetnestproject.domain.Aanbieding;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class AanbiedingController {
         model.addAttribute("nieuweAanbiedingen", hetNestService.getAllAanbiedingenByStatus("nieuw"));
         model.addAttribute("goedgekeurdeAanbiedingen", hetNestService.getAllAanbiedingenByStatus("goedgekeurd"));
         model.addAttribute("dringendTeGebruiken", hetNestService.getAllAanbiedingenByStatus("dringend"));
+        model.addAttribute("ingredienten", hetNestService.getIngredienten());
         return "/aanbiedingen";
     }
 
@@ -59,6 +61,10 @@ public class AanbiedingController {
 
         if (aanbieding.getStatus() == "nieuw"){
             aanbieding.setStatus("goedgekeurd");
+
+            Ingredient ingredient = new Ingredient(aanbieding.getNaam(), aanbieding.getHoeveelheid());
+
+            hetNestService.saveIngredient(ingredient);
             hetNestService.updateAanbieding(aanbieding);
         }
 

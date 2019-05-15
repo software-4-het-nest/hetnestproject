@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div class="p-4">
-        <h2>Voorraad (Goedgekeurde Aanbiedingen)</h2>
+        <h2>Goedgekeurde Aanbiedingen</h2>
         <ul style="list-style-type: none;">
             <li th:each="aanbieding : ${goedgekeurdeAanbiedingen}">
                 <a th:href="@{/aanbieding.html(id=${aanbieding.id})}">
@@ -41,6 +41,18 @@
                     <a th:href="@{/aanbieding.html(id=${aanbieding.id})}">
                         <span th:text="${aanbieding.naam}"></span>
                     </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-left d-flex flex-row">
+        <div class="p-4">
+            <h2>Voorraad</h2>
+            <ul style="list-style-type: none;">
+                <li th:each="ingredient : ${ingredienten}">
+                    <span th:text="${ingredient.naam}"></span><span>-</span>
+                    <span th:text="${ingredient.hoeveelheid}"></span><span>-</span>
+                    <span th:text="${ingredient.status}"></span>
                 </li>
             </ul>
         </div>

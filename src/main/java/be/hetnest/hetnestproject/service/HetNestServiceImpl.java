@@ -2,9 +2,11 @@ package be.hetnest.hetnestproject.service;
 
 import be.hetnest.hetnestproject.dao.AanbiedingRepository;
 import be.hetnest.hetnestproject.dao.AanvragenRepository;
+import be.hetnest.hetnestproject.dao.IngredientenRepository;
 import be.hetnest.hetnestproject.dao.UserRepository;
 import be.hetnest.hetnestproject.domain.Aanbieding;
 import be.hetnest.hetnestproject.domain.Aanvraag;
+import be.hetnest.hetnestproject.domain.Ingredient;
 import be.hetnest.hetnestproject.domain.User;
 import be.hetnest.hetnestproject.formdata.AanbiedingData;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +33,9 @@ public class HetNestServiceImpl implements HetNestService {
 
     @Autowired
     private AanvragenRepository aanvragenRepository;
+
+    @Autowired
+    private IngredientenRepository ingredientenRepository;
 
     public HetNestServiceImpl(){}
 
@@ -129,5 +134,23 @@ public class HetNestServiceImpl implements HetNestService {
 
         User theUser = findAuthenticatedUser();
         return theUser.getRole();
+    }
+
+    @Override
+    public List<Ingredient> getIngredienten() { return this.ingredientenRepository.findAll();}
+
+    @Override
+    public Ingredient getIngredientById(long id){
+        return this.ingredientenRepository.findById(id);
+    }
+
+    @Override
+    public List<Ingredient> getAllIngredientenByStatus(String status) {
+        return (ingredientenRepository.findAllByStatus(status));
+    }
+
+    @Override
+    public void saveIngredient(Ingredient ingredient){
+        ingredientenRepository.save(ingredient);
     }
 }
