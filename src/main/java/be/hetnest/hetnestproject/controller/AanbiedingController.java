@@ -37,9 +37,10 @@ public class AanbiedingController {
     
     @RequestMapping(value = {"/aanbiedingen.html"}, method = RequestMethod.GET)
     public String index(ModelMap model) {
-        List<Aanbieding> aanbiedingen = hetNestService.getAlleAanbiedingen();
         model.addAttribute("userrole",hetNestService.getAuthenticatedRole());
-        model.addAttribute("aanbiedingen", aanbiedingen);
+        model.addAttribute("nieuweAanbiedingen", hetNestService.getAllAanbiedingenByStatus("nieuw"));
+        model.addAttribute("goedgekeurdeAanbiedingen", hetNestService.getAllAanbiedingenByStatus("goedgekeurd"));
+        model.addAttribute("dringendTeGebruiken", hetNestService.getAllAanbiedingenByStatus("dringend"));
         return "/aanbiedingen";
     }
 
@@ -48,6 +49,44 @@ public class AanbiedingController {
         Aanbieding aanbieding = hetNestService.getAanbiedingById(id);
         model.addAttribute("aanbieding", aanbieding);
         return "/aanbieding";
+    }
+
+
+
+    @RequestMapping(value="accepteerAanbieding", method = RequestMethod.POST)
+    public String accepteerAanbieding (@RequestParam Long id) {
+        Aanbieding aanbieding = hetNestService.getAanbiedingById(id);
+
+        if (aanbieding.getStatus() == "nieuw"){
+            aanbieding.setStatus("goedgekeurd");
+            hetNestService.updateAanbieding(aanbieding);
+        }
+
+        return "redirect:/aanbiedingen.html";
+    }
+
+    @RequestMapping(value="keurAanbiedingAf", method = RequestMethod.POST)
+    public String keurAanbiedingAf (@RequestParam Long id) {
+        Aanbieding aanbieding = hetNestService.getAanbiedingById(id);
+
+        if (aanbieding.getStatus() == "nieuw"){
+            aanbieding.setStatus("afgekeurd");
+            hetNestService.updateAanbieding(aanbieding);
+        }
+
+        return "redirect:/aanbiedingen.html";
+    }
+
+    @RequestMapping(value="markeerAanbiedingDringend", method = RequestMethod.POST)
+    public String markeerAanbiedingDringend (@RequestParam Long id) {
+        Aanbieding aanbieding = hetNestService.getAanbiedingById(id);
+
+        if (aanbieding.getStatus() == "nieuw"){
+            aanbieding.setStatus("dringend");
+            hetNestService.updateAanbieding(aanbieding);
+        }
+
+        return "redirect:/aanbiedingen.html";
     }
 
     @RequestMapping(value = {"/nieuweAanbieding.html"}, method = RequestMethod.GET)
@@ -62,7 +101,7 @@ public class AanbiedingController {
 
         if (result.hasErrors()) return "/nieuweAanbieding.html";
 
-        Aanbieding toegevoegdAanbieding = hetNestService.addAanbieding(aanbieding.getHoeveelheid(), aanbieding.getPrijs(), aanbieding.getType(), aanbieding.getNaam());
+        Aanbieding toegevoegdAanbieding = hetNestService.addAanbieding(aanbieding.getHoeveelheid(), aanbieding.getStatus(), aanbieding.getPrijs(), aanbieding.getType(), aanbieding.getNaam());
         toegevoegdAanbieding.setHoeveelheid(aanbieding.getHoeveelheid());
         toegevoegdAanbieding.setPrijs(aanbieding.getPrijs());
         toegevoegdAanbieding.setType(aanbieding.getType());

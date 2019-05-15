@@ -1,7 +1,6 @@
 package be.hetnest.hetnestproject.domain;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -15,6 +14,10 @@ public class Aanbieding {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
+
+    @Column
+    @NotEmpty(message = "De status mag niet leeg zijn.")
+    private String status;
 
     @Column
     @Min(message = "Hoeveelheid mag niet negatief zijn.", value = 0)
@@ -36,14 +39,19 @@ public class Aanbieding {
     {
     	
     }
-    public Aanbieding(int _hoeveelheid, double _prijs, String _type, String _naam)
+    public Aanbieding(int hoeveelheid, String status, double prijs, String type, String naam)
     {
-    	this.hoeveelheid = _hoeveelheid;
-    	this.prijs = _prijs;
-    	this.type = _type;
-    	this.naam = _naam;
+        this.status = status;
+    	this.hoeveelheid = hoeveelheid;
+    	this.prijs = prijs;
+    	this.type = type;
+    	this.naam = naam;
     }
-    
+
+    public String getStatus() { return this.status;}
+
+    public void setStatus(String status) { this.status = status; }
+
     public long getId() {
     	return this.id;
     }
@@ -73,21 +81,20 @@ public class Aanbieding {
     	return this.naam;
     }
     
-    public void setHoeveelheid(int _hoeveelheid)
+    public void setHoeveelheid(int hoeveelheid)
     {
-        this.hoeveelheid = _hoeveelheid;
+        this.hoeveelheid = hoeveelheid;
     }
 
-    public void setPrijs(double _prijs)
+    public void setPrijs(double prijs)
     {
-        this.prijs = _prijs;
+        this.prijs = prijs;
     }
 
-    public void setType(String _type)
+    public void setType(String type)
     {
-        this.type = _type;
+        this.type = type;
     }
-
 
     public void setNaam(String naam){
         this.naam = naam;

@@ -11,12 +11,13 @@ public interface HetNestService {
 
     String getAuthenticatedRole();
     List<Aanbieding> getAanbiedingen();
+    List<Aanbieding> getAllAanbiedingenByStatus(String status);
 
     AanbiedingData prepareNewAanbiedingData();
 
     AanbiedingData prepareAanbiedingData(Aanbieding theAanbieding, boolean timeShift);
     
-    Aanbieding addAanbieding(int _hoeveelheid, double _prijs, String _type, String _naam);
+    Aanbieding addAanbieding(int hoeveelheid, String status, double prijs, String type, String naam);
     Aanbieding voegAanbiedingToeREST(Aanbieding aanbieding);
     Aanbieding getAanbiedingById (long id);
     Aanbieding getAanbiedingByName (String naam);

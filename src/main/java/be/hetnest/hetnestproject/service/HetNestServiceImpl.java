@@ -63,8 +63,8 @@ public class HetNestServiceImpl implements HetNestService {
     }
     
     @Override
-    public Aanbieding addAanbieding(int _hoeveelheid, double _prijs, String _type, String _naam){
-        return this.aanbiedingRepository.save(new Aanbieding(_hoeveelheid, _prijs, _type, _naam));
+    public Aanbieding addAanbieding(int hoeveelheid, String status, double prijs, String type, String naam){
+        return this.aanbiedingRepository.save(new Aanbieding(hoeveelheid, status, prijs, type, naam));
     }
 
     @Override
@@ -75,6 +75,11 @@ public class HetNestServiceImpl implements HetNestService {
     @Override
     public Aanbieding getAanbiedingByName(String naam){
         return this.aanbiedingRepository.findByNaam(naam);
+    }
+
+    @Override
+    public List<Aanbieding> getAllAanbiedingenByStatus(String status) {
+        return (aanbiedingRepository.findAllByStatus(status));
     }
 
     @Override
