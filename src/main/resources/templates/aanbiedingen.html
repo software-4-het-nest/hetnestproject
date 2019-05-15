@@ -25,12 +25,12 @@
             </ul>
         </div>
         <div class="p-4">
-        <h2>Goedgekeurde Aanbiedingen</h2>
+        <h2>Voorraad (Goedgekeurde Aanbiedingen)</h2>
         <ul style="list-style-type: none;">
             <li th:each="aanbieding : ${goedgekeurdeAanbiedingen}">
                 <a th:href="@{/aanbieding.html(id=${aanbieding.id})}">
                     <span th:text="${aanbieding.naam}"></span>
-                </a>
+                </a><span th:text="- ${aanbieding.hoeveelheid}"></span>
             </li>
         </ul>
         </div>
