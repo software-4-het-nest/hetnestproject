@@ -11,6 +11,7 @@
 <body>
 <div th:replace="header :: header">Header</div>
 <div class="container">
+    <p th:if="${userrole}=='MAGAZIJNIER'" th:text="${userrole}"></p>
     <div class="text-left">
         <h1>Lijst van aanbiedingen</h1>
         <ul style="list-style-type: none;">

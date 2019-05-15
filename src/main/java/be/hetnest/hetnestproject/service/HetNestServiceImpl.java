@@ -2,12 +2,16 @@ package be.hetnest.hetnestproject.service;
 
 import be.hetnest.hetnestproject.dao.AanbiedingRepository;
 import be.hetnest.hetnestproject.dao.AanvragenRepository;
+import be.hetnest.hetnestproject.dao.UserRepository;
 import be.hetnest.hetnestproject.domain.Aanbieding;
 import be.hetnest.hetnestproject.domain.Aanvraag;
+import be.hetnest.hetnestproject.domain.User;
 import be.hetnest.hetnestproject.formdata.AanbiedingData;
 import lombok.extern.slf4j.Slf4j;
 import be.hetnest.hetnestproject.service.HetNestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +25,9 @@ public class HetNestServiceImpl implements HetNestService {
 
     @Autowired
     private AanbiedingRepository aanbiedingRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private AanvragenRepository aanvragenRepository;
@@ -97,5 +104,25 @@ public class HetNestServiceImpl implements HetNestService {
     public Aanbieding voegAanbiedingToeREST(Aanbieding aanbieding) {
 
         return aanbiedingRepository.save(aanbieding);
+    }
+
+    private String getAuthenticatedUsername() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        return currentPrincipalName;
+    }
+
+    private User findAuthenticatedUser() {
+
+        String username = getAuthenticatedUsername();
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public String getAuthenticatedRole() {
+
+        User theUser = findAuthenticatedUser();
+        return theUser.getRole();
     }
 }

@@ -8,6 +8,8 @@ import be.hetnest.hetnestproject.formdata.AanbiedingData;
 import java.util.List;
 
 public interface HetNestService {
+
+    String getAuthenticatedRole();
     List<Aanbieding> getAanbiedingen();
 
     AanbiedingData prepareNewAanbiedingData();

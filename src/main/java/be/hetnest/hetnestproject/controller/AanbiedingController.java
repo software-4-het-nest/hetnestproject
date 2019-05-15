@@ -38,6 +38,7 @@ public class AanbiedingController {
     @RequestMapping(value = {"/aanbiedingen.html"}, method = RequestMethod.GET)
     public String index(ModelMap model) {
         List<Aanbieding> aanbiedingen = hetNestService.getAlleAanbiedingen();
+        model.addAttribute("userrole",hetNestService.getAuthenticatedRole());
         model.addAttribute("aanbiedingen", aanbiedingen);
         return "/aanbiedingen";
     }
