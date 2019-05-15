@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HetNest - aanbieding</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="header :: header">Header</div>
+<div class="container">
+    <div class="text-left">
+        <h1>Details van brouwsel</h1>
+        <<p><b>Id:</b> <span th:text="${}"></span> </p>
+        <p><b>Naam:</b> <span th:text="${}"></span> </p>
+        <p><b>Externe Brouwer:</b> <span th:text="${}"></span> </p>
+        <p>
+            <a th:href="@{}">Brouwsel wijzigen</a>
+        </p>
+        <p>
+            <a th:href="@{}">Brouwsel verwijderen</a>
+        </p>
+        <a th:href="@{/brouwsels.html}">Lijst van alle brouwsel</a>
+
+        <br>
+
+        <form th:action="@{/aanbiedingKlaarzetten}" th:object="${}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <button type="submit">Aanbiedingen klaarzetten</button>
+        </form>
+    </div>
+    <div th:replace="footer :: footer"></div>
+</div>
+</body>
+</html>

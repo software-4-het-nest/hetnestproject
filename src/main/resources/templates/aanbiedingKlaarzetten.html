@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>HetNest</title>
+    <title>HetNest - aanbieding</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
@@ -11,8 +11,20 @@
 <body>
 <div th:replace="header :: header">Header</div>
 <div class="container">
-    <a th:href="@{/aanbiedingen.html}" class="btn btn-info">Bekijk aanbiedingen</a>
-    <a th:href="@{/brouwsels.html}" class="btn btn-info">Brouwsels</a>
+    <table>
+        <thead>
+        <tr>
+            <th> Ingrediënt </th>
+            <th> Hoeveelheid </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each=" : ${}">
+            <td><span th:text="${}">  </span></td>
+            <td><span th:text="${}">  </span></td>
+        </tr>
+        </tbody>
+    </table>
     <div th:replace="footer :: footer"></div>
 </div>
 </body>
