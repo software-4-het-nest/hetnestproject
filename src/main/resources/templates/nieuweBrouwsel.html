@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>HetNest - aanbieding</title>
+    <title>HetNest - aanbieding toevoegen</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
@@ -11,17 +11,23 @@
 <body>
 <div th:replace="header :: header">Header</div>
 <div class="container">
-    <h2>Selecteer ingredienten</h2>
-    <<p><b>Id:</b> <span th:text="${brouwsel.getId()}"></span> </p>
-    <form method="POST" th:value="${aanbieding}">
-        <select class="form-control" name="aanbieding">
-            <option th:each="aanbieding : ${alleKlaargezetteAanbiedingen}"
+    <div class="text-left">
+        <h1>Nieuwe brouwsel</h1>
+        <form method="POST" th:object="${brouwsel}">
+            <div class="form-group">
+                <label>Naam:
+                    <input type="text" class="form-control" th:field="*{naam}"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Naam externe brouwer:
+                    <input type="text" class="form-control" th:field="*{naamExterneBrouwer}"/>
+                </label>
+            </div>
+            <input name="submit" type="submit" value="save" class="btn btn-primary"/>
+        </form>
 
-                    th:value="${aanbieding.id}"
-                    th:text="${aanbieding.naam}  +  ${aanbieding.hoeveelheid}">Part name</option>
-        </select>
-        <input name="submit" type="submit" value="save" class="btn btn-primary"/>
-    </form>
+    </div>
     <div th:replace="footer :: footer"></div>
 </div>
 </body>

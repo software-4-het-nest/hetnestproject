@@ -13,23 +13,38 @@
 <div class="container">
     <div class="text-left">
         <h1>Details van brouwsel</h1>
-        <<p><b>Id:</b> <span th:text="${}"></span> </p>
-        <p><b>Naam:</b> <span th:text="${}"></span> </p>
-        <p><b>Externe Brouwer:</b> <span th:text="${}"></span> </p>
+        <<p><b>Id:</b> <span th:text="${brouwsel.getId()}"></span> </p>
+        <p><b>Naam:</b> <span th:text="${brouwsel.getNaam()}"></span> </p>
+        <p><b>Externe Brouwer:</b> <span th:text="${brouwsel.getNaamExterneBrouwer()}"></span> </p>
+        <table>
+            <thead>
+            <tr>
+                <th> Ingrediënt </th>
+                <th> Hoeveelheid </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="aanbieding : ${brouwsel.klaargezetteIngredienten}">
+                <td><span th:text="${aanbieding.naam}">  </span></td>
+                <td><span th:text="${aanbieding.hoeveelheid}">  </span></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
         <p>
-            <a th:href="@{}">Brouwsel wijzigen</a>
+            <a th:href="@{/updateBrouwsel.html(id=${brouwsel.id})}">Brouwsel wijzigen</a>
         </p>
         <p>
-            <a th:href="@{}">Brouwsel verwijderen</a>
+            <a th:href="@{/brouwselVerwijder.html(id=${brouwsel.id})}">Brouwsel verwijderen</a>
+        </p>
+        <p>
+            <a th:href="@{/aanbiedingKlaarzetten.html(id=${brouwsel.id})}">Ingredienten klaarzetten</a>
         </p>
         <a th:href="@{/brouwsels.html}">Lijst van alle brouwsel</a>
 
         <br>
 
-        <form th:action="@{/aanbiedingKlaarzetten}" th:object="${}" method="post">
-            <input type="hidden" th:field="*{id}" />
-            <button type="submit">Aanbiedingen klaarzetten</button>
-        </form>
+
     </div>
     <div th:replace="footer :: footer"></div>
 </div>

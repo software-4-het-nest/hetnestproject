@@ -1,12 +1,10 @@
 package be.hetnest.hetnestproject.service;
 
-import be.hetnest.hetnestproject.dao.AanbiedingRepository;
-import be.hetnest.hetnestproject.dao.AanvragenRepository;
-import be.hetnest.hetnestproject.dao.IngredientenRepository;
-import be.hetnest.hetnestproject.dao.UserRepository;
+import be.hetnest.hetnestproject.dao.*;
 import be.hetnest.hetnestproject.domain.Aanbieding;
 import be.hetnest.hetnestproject.domain.Aanvraag;
 import be.hetnest.hetnestproject.domain.Ingredient;
+import be.hetnest.hetnestproject.domain.Brouwsel;
 import be.hetnest.hetnestproject.domain.User;
 import be.hetnest.hetnestproject.formdata.AanbiedingData;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +17,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service("HetNestService")
@@ -36,6 +37,9 @@ public class HetNestServiceImpl implements HetNestService {
 
     @Autowired
     private IngredientenRepository ingredientenRepository;
+
+    @Autowired
+    private BrouwselRepository brouwselRepository;
 
     public HetNestServiceImpl(){}
 
@@ -153,4 +157,31 @@ public class HetNestServiceImpl implements HetNestService {
     public void saveIngredient(Ingredient ingredient){
         ingredientenRepository.save(ingredient);
     }
+
+    @Override
+    public Brouwsel getBrouwselById(long id) { return this.brouwselRepository.findById(id); }
+
+    @Override
+    public List<Brouwsel> getAlleBrouwsels() { return this.brouwselRepository.findAll(); }
+
+    @Override
+    public Brouwsel addBrouwsel(String naam, String naamExterneBrouwer){
+        return this.brouwselRepository.save(new Brouwsel(naam, naamExterneBrouwer, null));
+    }
+
+    @Override
+    public void updateBrouwsel(Brouwsel brouwsel){
+        this.brouwselRepository.save(brouwsel);
+    }
+
+    @Override
+    public void deleteBrouwsel(Brouwsel brouwsel){
+        this.brouwselRepository.delete(brouwsel);
+    }
+
+    @Override
+    public void deleteBrouwselById(long id){
+        this.brouwselRepository.deleteById(id);
+    }
+
 }

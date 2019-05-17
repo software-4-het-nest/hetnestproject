@@ -12,13 +12,13 @@
 <div th:replace="header :: header">Header</div>
 <div class="container">
     <p th:if="${userrole}=='MAGAZIJNIER'" th:text="${userrole}"></p>
-    <a th:href="@{/nieuweAanbieding.html}">Nieuwe aanbieding</a>
+    <a th:href="@{/nieuweBrouwsel.html}">Nieuwe Brouwsel</a>
     <div class="text-left d-flex flex-row">
         <div class="p-4">
             <h2>Brouwsels</h2>
             <ul style="list-style-type: none;">
-                <li th:each="brouwsel : ${nieuweBrouwsel}">
-                    <a th:href="@{/aanbieding.html(id=${brouwsel.id})}">
+                <li th:each="brouwsel : ${nieuweBrouwsels}">
+                    <a th:href="@{/brouwsel.html(id=${brouwsel.getId()})}">
                         <span th:text="${brouwsel.naam}"></span>
                     </a>
                 </li>

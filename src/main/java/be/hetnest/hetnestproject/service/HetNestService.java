@@ -4,6 +4,7 @@ package be.hetnest.hetnestproject.service;
 import be.hetnest.hetnestproject.domain.Aanbieding;
 import be.hetnest.hetnestproject.domain.Aanvraag;
 import be.hetnest.hetnestproject.domain.Ingredient;
+import be.hetnest.hetnestproject.domain.Brouwsel;
 import be.hetnest.hetnestproject.formdata.AanbiedingData;
 
 import java.util.List;
@@ -31,4 +32,11 @@ public interface HetNestService {
     List<Ingredient> getIngredienten();
     List<Ingredient> getAllIngredientenByStatus(String status);
     void saveIngredient(Ingredient ingredient);
+
+    Brouwsel getBrouwselById(long id);
+    Brouwsel addBrouwsel(String naam, String naamExterneBrouwer);
+    List<Brouwsel> getAlleBrouwsels();
+    void updateBrouwsel(Brouwsel brouwsel);
+    void deleteBrouwsel(Brouwsel brouwsel);
+    void deleteBrouwselById(long id);
 }

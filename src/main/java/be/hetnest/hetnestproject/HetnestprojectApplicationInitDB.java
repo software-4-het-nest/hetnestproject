@@ -2,19 +2,27 @@ package be.hetnest.hetnestproject;
 
 import be.hetnest.hetnestproject.dao.AanbiedingRepository;
 import be.hetnest.hetnestproject.dao.AanvragenRepository;
+import be.hetnest.hetnestproject.dao.BrouwselRepository;
 import be.hetnest.hetnestproject.dao.UserRepository;
 import be.hetnest.hetnestproject.domain.Aanbieding;
 import be.hetnest.hetnestproject.domain.Aanvraag;
 import be.hetnest.hetnestproject.domain.User;
+import be.hetnest.hetnestproject.domain.Brouwsel;
+import be.hetnest.hetnestproject.service.HetNestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
+import java.util.*;
+
 @Component
 @ConditionalOnProperty(name = "app.db-init", havingValue = "true")
 public class HetnestprojectApplicationInitDB  implements CommandLineRunner {
+
+    @Autowired
+    private HetNestService hetNestService;
 
     @Autowired
     UserRepository userRepository;
@@ -24,6 +32,9 @@ public class HetnestprojectApplicationInitDB  implements CommandLineRunner {
 
     @Autowired
     AanbiedingRepository aanbiedingRepository;
+
+    @Autowired
+    BrouwselRepository brouwselRepository;
 
     public static String hash(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
@@ -62,6 +73,17 @@ public class HetnestprojectApplicationInitDB  implements CommandLineRunner {
         aanbiedingRepository.save(aanbieding8);
         aanbiedingRepository.save(aanbieding9);
         aanbiedingRepository.save(aanbieding10);
+
+
+
+
+        Brouwsel brouwsel1 = new Brouwsel("Hamad", "Kurbanov", null);
+        Brouwsel brouwsel2 = new Brouwsel("Hamad", "Kurbanov", null);
+        Brouwsel brouwsel3 = new Brouwsel("Hamad", "Kurbanov", null);
+
+        brouwselRepository.save(brouwsel1);
+        brouwselRepository.save(brouwsel2);
+        brouwselRepository.save(brouwsel3);
 
         System.out.println(" -- Database has been initialized --");
     }
