@@ -132,4 +132,10 @@ public class BrouwselController {
         }
         return "redirect:brouwsels.html";
     }
+
+    /**@RequestMapping(value = {"/brouwsel.html"}, method = RequestMethod.POST)
+    public String klaargezetUitVoorraad(@RequestParam("brouwsel"), Brouwsel huidigeBrouwsel, ModelMap model)
+    {
+
+    }**/
 }

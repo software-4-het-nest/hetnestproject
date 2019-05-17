@@ -62,9 +62,34 @@ public class AanbiedingController {
         if (aanbieding.getStatus() == "nieuw"){
             aanbieding.setStatus("goedgekeurd");
 
-            Ingredient ingredient = new Ingredient(aanbieding.getNaam(), aanbieding.getHoeveelheid());
+            Ingredient ingredient;
 
-            hetNestService.saveIngredient(ingredient);
+            List<Ingredient> ingredienten = hetNestService.getIngredienten();
+            if(ingredienten.size() < 1 ){
+                ingredient = new Ingredient(aanbieding.getNaam(), aanbieding.getHoeveelheid());
+            }
+            else{
+                boolean exists = false;
+                for(Ingredient ingr : ingredienten){
+                    if(ingr.getNaam() == aanbieding.getNaam()){
+                        exists = true;
+                        ingredient = ingr;
+                        ingr.addHoeveelheid(aanbieding.getHoeveelheid());
+                        hetNestService.saveIngredient(ingredient);
+                    }
+
+
+                }
+                if(!exists){
+                    ingredient = new Ingredient(aanbieding.getNaam(), aanbieding.getHoeveelheid());
+                    hetNestService.saveIngredient(ingredient);
+                }
+
+            }
+
+
+
+
             hetNestService.updateAanbieding(aanbieding);
         }
 

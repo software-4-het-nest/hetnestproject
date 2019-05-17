@@ -40,6 +40,10 @@
         <p>
             <a th:href="@{/aanbiedingKlaarzetten.html(id=${brouwsel.id})}">Ingredienten klaarzetten</a>
         </p>
+        <form th:action="@{/klaargezetUitVoorraad}" th:object="${brouwsel}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <button type="submit">Klaargezette grondstoffen uit voorraad halen</button>
+        </form>
         <a th:href="@{/brouwsels.html}">Lijst van alle brouwsel</a>
 
         <br>

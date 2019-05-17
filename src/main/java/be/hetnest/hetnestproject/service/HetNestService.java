@@ -39,4 +39,7 @@ public interface HetNestService {
     void updateBrouwsel(Brouwsel brouwsel);
     void deleteBrouwsel(Brouwsel brouwsel);
     void deleteBrouwselById(long id);
+
+
+
 }

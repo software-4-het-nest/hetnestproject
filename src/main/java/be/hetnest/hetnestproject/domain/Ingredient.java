@@ -67,4 +67,6 @@ public class Ingredient {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public void addHoeveelheid (int hoeveelheid) {this.hoeveelheid += hoeveelheid;}
 }

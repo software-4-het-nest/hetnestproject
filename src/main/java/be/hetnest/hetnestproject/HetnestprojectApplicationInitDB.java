@@ -1,13 +1,7 @@
 package be.hetnest.hetnestproject;
 
-import be.hetnest.hetnestproject.dao.AanbiedingRepository;
-import be.hetnest.hetnestproject.dao.AanvragenRepository;
-import be.hetnest.hetnestproject.dao.BrouwselRepository;
-import be.hetnest.hetnestproject.dao.UserRepository;
-import be.hetnest.hetnestproject.domain.Aanbieding;
-import be.hetnest.hetnestproject.domain.Aanvraag;
-import be.hetnest.hetnestproject.domain.User;
-import be.hetnest.hetnestproject.domain.Brouwsel;
+import be.hetnest.hetnestproject.dao.*;
+import be.hetnest.hetnestproject.domain.*;
 import be.hetnest.hetnestproject.service.HetNestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -35,6 +29,9 @@ public class HetnestprojectApplicationInitDB  implements CommandLineRunner {
 
     @Autowired
     BrouwselRepository brouwselRepository;
+
+    @Autowired
+    IngredientenRepository ingredientRepository;
 
     public static String hash(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
@@ -74,8 +71,21 @@ public class HetnestprojectApplicationInitDB  implements CommandLineRunner {
         aanbiedingRepository.save(aanbieding9);
         aanbiedingRepository.save(aanbieding10);
 
+        Ingredient ingredient = new Ingredient("graan", 0);
+        Ingredient ingredient1 = new Ingredient("hop", 0);
+        Ingredient ingredient2 = new Ingredient("gist", 0);
+        Ingredient ingredient3 = new Ingredient("Appelen", aanbieding6.getHoeveelheid());
+        Ingredient ingredient4 = new Ingredient("Peren", aanbieding7.getHoeveelheid());
+        Ingredient ingredient5 = new Ingredient("Kersensap", aanbieding8.getHoeveelheid());
+        Ingredient ingredient6 = new Ingredient("Suiker", 0);
 
 
+        ingredientRepository.save(ingredient);
+        ingredientRepository.save(ingredient2);
+        ingredientRepository.save(ingredient3);
+        ingredientRepository.save(ingredient4);
+        ingredientRepository.save(ingredient5);
+        ingredientRepository.save(ingredient6);
 
         Brouwsel brouwsel1 = new Brouwsel("Hamad", "Kurbanov", null);
         Brouwsel brouwsel2 = new Brouwsel("Hamad", "Kurbanov", null);
