@@ -39,6 +39,9 @@ public class Aanbieding {
     @JoinColumn(name = "brouwsel")
     private Brouwsel brouwsel;
 
+    @Column
+    private String extra;
+
     
     public Aanbieding()
     {
@@ -52,6 +55,10 @@ public class Aanbieding {
     	this.type = type;
     	this.naam = naam;
     }
+
+    public String getExtra() { return this.extra; }
+
+    public void setExtra(String extra) { this.extra = extra; }
 
     public String getStatus() { return this.status;}
 

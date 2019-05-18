@@ -150,4 +150,34 @@ public class BrouwselController {
         }
         return "redirect:brouwsels.html";
     }
+
+
+
+    @RequestMapping(value = {"/extraGrondstoffen.html"}, method = RequestMethod.GET)
+    public String ExtraGrondstoffenFormulier(@RequestParam("id") Integer id, ModelMap model) {
+        model.addAttribute("alleKlaargezetteAanbiedingen", hetNestService.getAllAanbiedingenByStatus("goedgekeurd"));
+        Brouwsel brouwsel = hetNestService.getBrouwselById(id);
+        tempBrouwsel = brouwsel;
+        model.addAttribute("brouwsel", brouwsel);
+        return "/extraGrondstoffen";
+    }
+
+    @RequestMapping(value={"/extraGrondstoffen.html"}, method = RequestMethod.POST)
+    public String ExtraGrondstoffen(@RequestParam("aanbieding") String string, ModelMap map) {
+        // value of nameOfCity is now value of "nameOfCity" paramter,
+        System.out.println(string);
+        long id = Long.parseLong(string);
+        Aanbieding aanbieding = hetNestService.getAanbiedingById(id);
+        aanbieding.setId(aanbieding.getId());
+        aanbieding.setHoeveelheid(aanbieding.getHoeveelheid());
+        aanbieding.setPrijs(aanbieding.getPrijs());
+        aanbieding.setType(aanbieding.getType());
+        aanbieding.setNaam(aanbieding.getNaam());
+        aanbieding.setBrouwsel(hetNestService.getBrouwselById(tempBrouwsel.getId()));
+        aanbieding.setExtra("Extra");
+        hetNestService.updateAanbieding(aanbieding);
+        return "redirect:brouwsel.html?id=" + tempBrouwsel.getId();
+    }
+
+
 }

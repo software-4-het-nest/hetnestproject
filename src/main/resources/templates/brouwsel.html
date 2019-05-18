@@ -16,20 +16,45 @@
         <<p><b>Id:</b> <span th:text="${brouwsel.getId()}"></span> </p>
         <p><b>Naam:</b> <span th:text="${brouwsel.getNaam()}"></span> </p>
         <p><b>Externe Brouwer:</b> <span th:text="${brouwsel.getNaamExterneBrouwer()}"></span> </p>
-        <table>
+        <br>
+        <br>
+
+        <table style="float: left">
+            <caption>Klaargezette ingrdienten</caption>
             <thead>
             <tr>
                 <th> Ingrediënt </th>
+                <th>     </th>
                 <th> Hoeveelheid </th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="aanbieding : ${brouwsel.klaargezetteIngredienten}">
+            <tr th:if="${aanbieding.getExtra() !='Extra'}" th:each="aanbieding : ${brouwsel.klaargezetteIngredienten}">
                 <td><span th:text="${aanbieding.naam}">  </span></td>
                 <td><span th:text="${aanbieding.hoeveelheid}">  </span></td>
             </tr>
             </tbody>
         </table>
+
+        <table style="float: right">
+            <caption>Extra ingrdienten</caption>
+            <thead>
+
+            <tr>
+                <th> Ingrediënt </th>
+                <th></th>
+                <th> Hoeveelheid </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${aanbieding.getExtra() =='Extra'}" th:each="aanbieding : ${brouwsel.klaargezetteIngredienten}">
+                <td><span th:text="${aanbieding.naam}">  </span></td>
+                <td><span th:text="${aanbieding.hoeveelheid}">  </span></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
         <br>
         <p>
             <a th:href="@{/updateBrouwsel.html(id=${brouwsel.id})}">Brouwsel wijzigen</a>
@@ -42,8 +67,12 @@
         </p>
         <form th:action="@{/klaargezetUitVoorraad}" th:object="${brouwsel}" method="post">
             <input type="hidden" th:field="*{id}" />
-            <button type="submit">Klaargezette grondstoffen uit voorraad halen</button>
+            <button type="submit">Klaargezette/extra ingredienten uit voorraad halen</button>
         </form>
+
+        <p>
+            <a th:href="@{/extraGrondstoffen.html(id=${brouwsel.id})}">Extra ingrdienten toevoegen</a>
+        </p>
         <a th:href="@{/brouwsels.html}">Lijst van alle brouwsel</a>
 
         <br>
