@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HetNest - aanbieding</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="header :: header">Header</div>
+<div class="container">
+    <h2>Selecteer extra ingrdienten</h2>
+    <<p><b>Id:</b> <span th:text="${brouwsel.getId()}"></span> </p>
+    <form method="POST" th:value="${aanbieding}">
+        <select class="form-control" name="aanbieding">
+            <option th:if="${aanbieding.getBrouwsel() == null}" th:each="aanbieding : ${alleKlaargezetteAanbiedingen}"
+
+                    th:value="${aanbieding.id}"
+                    th:text="${aanbieding.naam}  +  ${aanbieding.hoeveelheid}">Part name</option>
+        </select>
+        <input name="submit" type="submit" value="save" class="btn btn-primary"/>
+    </form>
+    <div th:replace="footer :: footer"></div>
+</div>
+</body>
+</html>
