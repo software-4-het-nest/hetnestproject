@@ -11,10 +11,10 @@
 <body>
 <div th:replace="header :: header">Header</div>
 <div class="container">
-    <p th:if="${userrole}=='MAGAZIJNIER'" th:text="${userrole}"></p>
+    <p th:text="${userrole}"></p>
     <a th:href="@{/nieuweAanbieding.html}">Nieuwe aanbieding</a>
     <div class="text-left d-flex flex-row">
-        <div class="p-4">
+        <div th:if="${userrole =='PRODUCTIELID'}" class="p-4">
             <h2>Nieuwe Aanbiedingen</h2>
             <ul style="list-style-type: none;">
                 <li th:each="aanbieding : ${nieuweAanbiedingen}">

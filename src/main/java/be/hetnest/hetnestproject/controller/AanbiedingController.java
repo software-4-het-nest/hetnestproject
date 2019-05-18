@@ -50,6 +50,8 @@ public class AanbiedingController {
     public String aanbiedingDetail(@RequestParam("id") Integer id, ModelMap model) {
         Aanbieding aanbieding = hetNestService.getAanbiedingById(id);
         model.addAttribute("aanbieding", aanbieding);
+        model.addAttribute("aanbiedingstatus", aanbieding.getStatus());
+        model.addAttribute("userrole",hetNestService.getAuthenticatedRole());
         return "/aanbieding";
     }
 
