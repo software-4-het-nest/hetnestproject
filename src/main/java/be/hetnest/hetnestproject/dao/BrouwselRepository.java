@@ -9,5 +9,6 @@ public interface BrouwselRepository extends JpaRepository<Brouwsel, Integer>{
     Brouwsel findById(long id);
     Brouwsel findByNaam(String naam);
     Brouwsel findBynaamExterneBrouwer(String externeBrouwer);
+
     void deleteById(long id);
 }

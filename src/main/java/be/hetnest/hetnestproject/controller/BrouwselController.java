@@ -14,6 +14,7 @@ import org.springframework.ui.ModelMap;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -133,9 +134,20 @@ public class BrouwselController {
         return "redirect:brouwsels.html";
     }
 
-    /**@RequestMapping(value = {"/brouwsel.html"}, method = RequestMethod.POST)
-    public String klaargezetUitVoorraad(@RequestParam("brouwsel"), Brouwsel huidigeBrouwsel, ModelMap model)
+    @RequestMapping(value = {"/klaargezetUitVoorraad"}, method = RequestMethod.POST)
+    public String klaargezetUitVoorraad(@RequestParam Long id)
     {
-
-    }**/
+        Brouwsel huidigeBrouwsel = hetNestService.getBrouwselById(id);
+        List<Aanbieding> klaargezetteAanbiedingen = hetNestService.getAlleAanbiedingenByBrouwsel(huidigeBrouwsel);
+        List<Ingredient> ingredients = hetNestService.getIngredienten();
+        for(Aanbieding item : klaargezetteAanbiedingen){
+            for(Ingredient ingr : ingredients){
+                if(item.getNaam() == ingr.getNaam()){
+                    ingr.removeHoeveelheid(item.getHoeveelheid());
+                    hetNestService.saveIngredient(ingr);
+                }
+            }
+        }
+        return "redirect:brouwsels.html";
+    }
 }

@@ -69,4 +69,6 @@ public class Ingredient {
     }
 
     public void addHoeveelheid (int hoeveelheid) {this.hoeveelheid += hoeveelheid;}
+
+    public void removeHoeveelheid (int hoeveelheid) {this.hoeveelheid -= hoeveelheid;}
 }

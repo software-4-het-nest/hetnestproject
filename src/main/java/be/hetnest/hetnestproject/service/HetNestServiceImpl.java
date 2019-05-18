@@ -112,6 +112,16 @@ public class HetNestServiceImpl implements HetNestService {
     }
 
     @Override
+    public Aanbieding getAanbiedingByBrouwsel (Brouwsel brouwsel){
+        return this.aanbiedingRepository.findByBrouwsel(brouwsel);
+    }
+
+    @Override
+    public List<Aanbieding> getAlleAanbiedingenByBrouwsel(Brouwsel brouwsel){
+        return this.aanbiedingRepository.findAllByBrouwsel(brouwsel);
+    }
+
+    @Override
     public List<Aanvraag> getAanvragen() { return this.aanvragenRepository.findAll();}
 
     @Transactional(propagation= Propagation.REQUIRED,readOnly=false)

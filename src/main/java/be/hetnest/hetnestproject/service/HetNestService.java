@@ -21,7 +21,9 @@ public interface HetNestService {
     Aanbieding voegAanbiedingToeREST(Aanbieding aanbieding);
     Aanbieding getAanbiedingById (long id);
     Aanbieding getAanbiedingByName (String naam);
+    Aanbieding getAanbiedingByBrouwsel (Brouwsel brouwsel);
     List<Aanbieding> getAlleAanbiedingen();
+    List<Aanbieding> getAlleAanbiedingenByBrouwsel(Brouwsel brouwsel);
     void updateAanbieding(Aanbieding aanbieding);
     void deleteAanbieding (Aanbieding aanbieding);
     void deleteAanbiedingById (long id);
