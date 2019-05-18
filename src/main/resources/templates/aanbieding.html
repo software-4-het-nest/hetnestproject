@@ -30,6 +30,7 @@
 
         <br>
 
+        <div th:if="${userrole =='PRODUCTIELID' and aanbiedingstatus == 'nieuw'}">
         <form th:action="@{/accepteerAanbieding}" th:object="${aanbieding}" method="post">
             <input type="hidden" th:field="*{id}" />
             <button type="submit">Keur Goed</button>
@@ -38,7 +39,8 @@
             <input type="hidden" th:field="*{id}" />
             <button type="submit">Keur Af</button>
         </form>
-        <form th:action="@{/markeerAanbiedingDringend}" th:object="${aanbieding}" method="post">
+        </div>
+        <form th:if="${userrole =='MAGAZIJNIER'  and aanbiedingstatus == 'goedgekeurd'}" th:action="@{/markeerAanbiedingDringend}" th:object="${aanbieding}" method="post">
             <input type="hidden" th:field="*{id}" />
             <button type="submit">Markeer Dringend</button>
         </form>
