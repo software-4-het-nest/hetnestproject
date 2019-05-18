@@ -36,6 +36,7 @@ public class BrouwselController {
     public String brouwselDetail(@RequestParam("id") Integer id, ModelMap model) {
         Brouwsel brouwsel = hetNestService.getBrouwselById(id);
         model.addAttribute("brouwsel", brouwsel);
+        model.addAttribute("userrole",hetNestService.getAuthenticatedRole());
         return "/brouwsel";
     }
 
