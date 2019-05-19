@@ -12,7 +12,7 @@
 <div th:replace="header :: header">Header</div>
 <div class="container">
     <p th:text="${userrole}"></p>
-    <a th:href="@{/aanbiedingen.html}" class="btn btn-info">Bekijk aanbiedingen</a>
+    <a th:href="@{/aanbiedingen.html}" name="aanbiedingen" class="btn btn-info">Bekijk aanbiedingen</a>
     <a th:href="@{/brouwsels.html}" class="btn btn-info">Brouwsels</a>
     <div th:replace="footer :: footer"></div>
 </div>

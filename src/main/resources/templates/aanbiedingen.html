@@ -12,7 +12,7 @@
 <div th:replace="header :: header">Header</div>
 <div class="container">
     <p th:text="${userrole}"></p>
-    <a th:href="@{/nieuweAanbieding.html}">Nieuwe aanbieding</a>
+    <a th:href="@{/nieuweAanbieding.html}" name="nieuweAanbieding">Nieuwe aanbieding</a>
     <div class="text-left d-flex flex-row">
         <div th:if="${userrole =='PRODUCTIELID'}" class="p-4">
             <h2>Nieuwe Aanbiedingen</h2>
