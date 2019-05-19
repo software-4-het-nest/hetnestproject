@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
@@ -96,5 +97,37 @@ public class HetnestprojectApplicationInitDB  implements CommandLineRunner {
         brouwselRepository.save(brouwsel3);
 
         System.out.println(" -- Database has been initialized --");
+
+
+
+
+
+
+
+
+
+        System.out.println("REST");
+        Aanbieding[] Aanbiedingen;
+
+        RestTemplate rt = new RestTemplate();
+
+        // REST GET vraagt een resource op (één item)
+
+        Aanbiedingen = rt.getForObject("http://localhost/test.json", Aanbieding[].class);
+        System.out.println("Via REST haalden we volgende Aanbieding op: "+ Aanbiedingen[0]);
+
+        //halen de lijst op
+        Aanbiedingen = rt.getForObject("http://localhost/test.json", Aanbieding[].class);
+        for (Aanbieding aanbieding1 : Aanbiedingen) {
+            System.out.println(aanbieding1);
+        }
+
+        //rest put
+        Aanbiedingen = rt.getForObject("http://localhost/test.json", Aanbieding[].class);
+        for (Aanbieding aanbieding1 : Aanbiedingen) {
+            Aanbieding deAanbieding = new Aanbieding(aanbieding1.getHoeveelheid(),aanbieding1.getStatus(), aanbieding1.getPrijs(), aanbieding1.getType(), aanbieding1.getNaam());
+            aanbiedingRepository.save(deAanbieding);
+        }
+
     }
 }
