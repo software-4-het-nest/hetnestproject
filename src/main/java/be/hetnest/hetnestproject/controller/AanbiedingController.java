@@ -114,7 +114,7 @@ public class AanbiedingController {
     public String markeerAanbiedingDringend (@RequestParam Long id) {
         Aanbieding aanbieding = hetNestService.getAanbiedingById(id);
 
-        if (aanbieding.getStatus() == "nieuw"){
+        if (aanbieding.getStatus() == "goedgekeurd"){
             aanbieding.setStatus("dringend");
             hetNestService.updateAanbieding(aanbieding);
         }
@@ -157,6 +157,7 @@ public class AanbiedingController {
         aanbieding.setPrijs(updateAanbieding.getPrijs());
         aanbieding.setType(updateAanbieding.getType());
         aanbieding.setNaam(updateAanbieding.getNaam());
+        aanbieding.setStatus(updateAanbieding.getStatus());
         hetNestService.updateAanbieding(aanbieding);
         return "redirect:aanbieding.html?id=" + aanbieding.getId();
     }

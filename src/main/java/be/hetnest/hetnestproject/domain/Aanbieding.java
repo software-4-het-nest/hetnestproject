@@ -16,23 +16,23 @@ public class Aanbieding {
     private long id;
 
     @Column
-    //@NotEmpty(message = "De status mag niet leeg zijn.")
+    @NotEmpty(message = "De status mag niet leeg zijn.")
     private String status;
 
     @Column
-    //@Min(message = "Hoeveelheid mag niet negatief zijn.", value = 0)
+    @Min(message = "Hoeveelheid mag niet negatief zijn.", value = 0)
     private int hoeveelheid;
 
     @Column
-    //@Min(message = "Prijs mag niet negatief zijn.", value = 0)
+    @Min(message = "Prijs mag niet negatief zijn.", value = 0)
     private double prijs;
 
     @Column
-    //@NotEmpty(message = "Type mag niet leeg zijn.")
+    @NotEmpty(message = "Type mag niet leeg zijn.")
     private String type;
 
     @Column
-    //@NotEmpty(message = "Naam mag niet leeg zijn.")
+    @NotEmpty(message = "Naam mag niet leeg zijn.")
     private String naam;
 
     @ManyToOne
