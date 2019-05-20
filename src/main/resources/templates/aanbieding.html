@@ -31,16 +31,16 @@
         <br>
 
         <div th:if="${userrole =='PRODUCTIELID' and aanbiedingstatus == 'nieuw'}">
-        <form th:action="@{/accepteerAanbieding}" th:object="${aanbieding}" method="post">
+        <form th:action="@{/accepteerAanbieding}" th:object="${aanbieding}" method="POST">
             <input type="hidden" th:field="*{id}" />
             <button type="submit">Keur Goed</button>
         </form>
-        <form th:action="@{/keurAanbiedingAf}" th:object="${aanbieding}" method="post">
+        <form th:action="@{/keurAanbiedingAf}" th:object="${aanbieding}" method="POST">
             <input type="hidden" th:field="*{id}" />
             <button type="submit">Keur Af</button>
         </form>
         </div>
-        <form th:if="${userrole =='MAGAZIJNIER'  and aanbiedingstatus == 'goedgekeurd'}" th:action="@{/markeerAanbiedingDringend}" th:object="${aanbieding}" method="post">
+        <form th:if="${userrole =='MAGAZIJNIER'  and aanbiedingstatus == 'goedgekeurd'}" th:action="@{/markeerAanbiedingDringend}" th:object="${aanbieding}" method="POST">
             <input type="hidden" th:field="*{id}" />
             <button type="submit">Markeer Dringend</button>
         </form>
