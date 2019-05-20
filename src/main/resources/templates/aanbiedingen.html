@@ -94,9 +94,8 @@
             <h2>Voorraad</h2>
             <ul style="list-style-type: none;">
                 <li th:each="ingredient : ${ingredienten}">
-                    <span th:text="${ingredient.naam}"></span><span></span>
+                    <span th:text="${ingredient.naam}"></span><span>: </span>
                     <span th:text="${ingredient.hoeveelheid}"></span><span></span>
-                    <span th:text="${ingredient.status}"></span>
                 </li>
             </ul>
         </div>
