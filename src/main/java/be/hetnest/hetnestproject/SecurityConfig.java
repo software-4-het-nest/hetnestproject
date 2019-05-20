@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login*", "/aanvragen*", "/hetnestapi*", "/externeAanbieding*").permitAll()
                 .antMatchers("/","/aanbieding*","/aanbiedingen*","/header*","/footer*","/brouwsel*").hasAnyAuthority("PRODUCTIELID","MAGAZIJNIER")
-                .antMatchers("/aanbiedingKlaarzetten*","/extraGrondstoffen*","/updateBrouwsel*"/*,"/accepteerAanbieding*","/keurAanbiedingAf*"*/).hasAuthority("PRODUCTIELID")
+                .antMatchers("/aanbiedingKlaarzetten*","/extraGrondstoffen*","/updateBrouwsel*","/accepteerAanbieding*","/keurAanbiedingAf*").hasAuthority("PRODUCTIELID")
                 .antMatchers("/**", "/h2/**").hasAuthority("MAGAZIJNIER")
                 .anyRequest().authenticated()
                 .and()
