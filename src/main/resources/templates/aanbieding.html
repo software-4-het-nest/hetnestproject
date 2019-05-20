@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -21,6 +21,42 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Numans');
+
+        html, body {
+            background-image: url('https://scontent.fbru1-1.fna.fbcdn.net/v/t1.0-9/1780755_559949407445203_267544886_n.jpg?_nc_cat=106&_nc_ht=scontent.fbru1-1.fna&oh=7eaec92bb5bca598105ba26fcbc0fe82&oe=5D621183');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+        }
+
+        .container {
+            align-content: ;
+        }
+
+        .card-header h3 {
+            color: white;
+        }
+
+        .button{
+            color: black;
+            background-color: #FFC312;
+            /*width: 100px;*/
+        }
+
+        .button:hover{
+            color: black;
+            background-color: white;
+        }
+        p {
+            color: white;
+        }
+        h1 {
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="header :: header">Header</div>
@@ -35,28 +71,28 @@
         <p><b>Type:</b> <span th:text="${aanbieding.getType()}"></span> </p>
 
         <p>
-            <a th:href="@{/updateAanbieding.html(id=${aanbieding.id})}">Aanbieding wijzigen</a>
+            <a th:href="@{/updateAanbieding.html(id=${aanbieding.id})}" class="btn button">Aanbieding wijzigen</a>
         </p>
         <p>
-            <a th:href="@{/aanbiedingVerwijder.html(id=${aanbieding.id})}">Aanbieding verwijderen</a>
+            <a th:href="@{/aanbiedingVerwijder.html(id=${aanbieding.id})}" class="btn button">Aanbieding verwijderen</a>
         </p>
-        <a th:href="@{/aanbiedingen.html}">Lijst van alle aanbiedingen</a>
+        <a th:href="@{/aanbiedingen.html}" class="btn button">Lijst van alle aanbiedingen</a>
 
         <br>
 
         <div th:if="${userrole =='PRODUCTIELID' and aanbiedingstatus == 'nieuw'}">
         <form th:action="@{/accepteerAanbieding}" th:object="${aanbieding}" method="POST">
             <input type="hidden" th:field="*{id}" />
-            <button type="submit">Keur Goed</button>
+            <button type="submit" class="btn button">Keur Goed</button>
         </form>
         <form th:action="@{/keurAanbiedingAf}" th:object="${aanbieding}" method="POST">
             <input type="hidden" th:field="*{id}" />
-            <button type="submit">Keur Af</button>
+            <button type="submit" class="btn button">Keur Af</button>
         </form>
         </div>
         <form th:if="${userrole =='MAGAZIJNIER'  and aanbiedingstatus == 'goedgekeurd'}" th:action="@{/markeerAanbiedingDringend}" th:object="${aanbieding}" method="POST">
             <input type="hidden" th:field="*{id}" />
-            <button type="submit">Markeer Dringend</button>
+            <button type="submit" class="btn button">Markeer Dringend</button>
         </form>
     </div>
     <div th:replace="footer :: footer"></div>

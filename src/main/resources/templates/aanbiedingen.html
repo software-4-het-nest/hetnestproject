@@ -16,11 +16,14 @@
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Numans');
 
@@ -32,56 +35,72 @@
             font-family: 'Numans', sans-serif;
         }
 
-        .container {
-            align-content: center;
-        }
-
         .card-header h3 {
             color: white;
         }
 
-        .button{
+        .button {
             color: black;
             background-color: #FFC312;
             /*width: 100px;*/
         }
 
-        .button:hover{
+        .button:hover {
             color: black;
             background-color: white;
+        }
+
+        #userrole {
+            color: white;
+            font-size: 40px;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        a:hover {
+            color: red;
         }
     </style>
 </head>
 <body>
 <div th:replace="header :: header">Header</div>
-<div class="container">
-    <p th:text="${userrole}"></p>
-    <a th:href="@{/nieuweAanbieding.html}" name="nieuweAanbieding">Nieuwe aanbieding</a>
+<p th:text="${userrole}" id="userrole"></p>
+<a th:href="@{/nieuweAanbieding.html}" name="nieuweAanbieding" class="btn button">Nieuwe aanbieding</a>
+<div class="text-left d-flex flex-row">
     <div class="text-left d-flex flex-row">
         <div th:if="${userrole =='PRODUCTIELID'}" class="p-4">
             <h2>Nieuwe Aanbiedingen</h2>
             <ul style="list-style-type: none;">
-                <li th:each="aanbieding : ${nieuweAanbiedingen}">
+                <li style="width: 300px;" th:each="aanbieding : ${nieuweAanbiedingen}"
+                    class="list-group-item d-flex justify-content-between align-items-center">
                     <a th:href="@{/aanbieding.html(id=${aanbieding.id})}">
                         <span th:text="${aanbieding.naam}"></span>
                     </a>
                 </li>
             </ul>
         </div>
+    </div>
+    <div class="text-left d-flex flex-row">
         <div class="p-4">
-        <h2>Goedgekeurde Aanbiedingen</h2>
-        <ul style="list-style-type: none;">
-            <li th:each="aanbieding : ${goedgekeurdeAanbiedingen}">
-                <a th:href="@{/aanbieding.html(id=${aanbieding.id})}">
-                    <span th:text="${aanbieding.naam}"></span>
-                </a><span th:text="- ${aanbieding.hoeveelheid}"></span>
-            </li>
-        </ul>
+            <h2>Goedgekeurde Aanbiedingen</h2>
+            <ul class="list-group">
+                <li style="width: 300px;" th:each="aanbieding : ${goedgekeurdeAanbiedingen}"
+                    class="list-group-item d-flex justify-content-between align-items-center">
+                    <a th:href="@{/aanbieding.html(id=${aanbieding.id})}">
+                        <span th:text="${aanbieding.naam}"></span>
+                    </a><span class="badge badge-primary badge-pill" th:text="${aanbieding.hoeveelheid}"></span>
+                </li>
+            </ul>
         </div>
+    </div>
+    <div class="text-left d-flex flex-row">
         <div class="p-4">
             <h2>Dringend te Gebruiken</h2>
-            <ul style="list-style-type: none;">
-                <li th:each="aanbieding : ${dringendTeGebruiken}">
+            <ul class="list-group">
+                <li style="width: 300px;" th:each="aanbieding : ${dringendTeGebruiken}"
+                    class="list-group-item d-flex justify-content-between align-items-center">
                     <a th:href="@{/aanbieding.html(id=${aanbieding.id})}">
                         <span th:text="${aanbieding.naam}"></span>
                     </a>
@@ -92,15 +111,16 @@
     <div class="text-left d-flex flex-row">
         <div class="p-4">
             <h2>Voorraad</h2>
-            <ul style="list-style-type: none;">
-                <li th:each="ingredient : ${ingredienten}">
-                    <span th:text="${ingredient.naam}"></span><span>: </span>
-                    <span th:text="${ingredient.hoeveelheid}"></span><span></span>
+            <ul class="list-group">
+                <li style="width: 300px;" th:each="ingredient : ${ingredienten}"
+                    class="list-group-item d-flex justify-content-between align-items-center">
+                    <span th:text="${ingredient.naam}"></span>
+                    <span class="badge badge-primary badge-pill" th:text="${ingredient.hoeveelheid}"></span>
                 </li>
             </ul>
         </div>
     </div>
-    <div th:replace="footer :: footer">&copy; 2013 The Static Templates</div>
 </div>
+<div th:replace="footer :: footer"></div>
 </body>
 </html>
