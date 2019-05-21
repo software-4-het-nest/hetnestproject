@@ -59,6 +59,13 @@
         .lihover:hover {
             background-color: #FFC312;
         }
+        a {
+            color: white;
+        }
+        th, td {
+            background-color: white;
+            color black;
+        }
     </style>
 </head>
 <body>
@@ -71,14 +78,13 @@
         <p><b>Externe Brouwer:</b> <span th:text="${brouwsel.getNaamExterneBrouwer()}"></span></p>
         <br>
         <br>
-
-        <table style="float: left">
-            <caption>Klaargezetten ingrdienten</caption>
+        <p>Klaargezetten ingrediënten</p>
+        <table style="float: left" class="table table-hover">
             <thead>
             <tr>
-                <th> Ingrediënt</th>
-                <th></th>
-                <th> Hoeveelheid</th>
+                <th scope="col"> Ingrediënt</th>
+                <th scope="col"></th>
+                <th scope="col"> Hoeveelheid</th>
             </tr>
             </thead>
             <tbody>
@@ -88,15 +94,14 @@
             </tr>
             </tbody>
         </table>
-
-        <table style="float: right">
-            <caption>Extra ingrdienten</caption>
+        <br>
+        <p>Extra ingrediënt</p>
+        <table style="float: left" class="table table-hover">
             <thead>
-
             <tr>
-                <th> Ingrediënt</th>
-                <th></th>
-                <th> Hoeveelheid</th>
+                <th scope="col">Ingredienten</th>
+                <th scope="col"></th>
+                <th scope="col">Hoeveelheid</th>
             </tr>
             </thead>
             <tbody>
