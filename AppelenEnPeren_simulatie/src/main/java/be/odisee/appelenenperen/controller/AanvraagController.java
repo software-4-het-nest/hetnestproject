@@ -4,14 +4,13 @@ import be.odisee.appelenenperen.domain.Aanvraag;
 import be.odisee.appelenenperen.service.AppelenEnPerenSessieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@Controller
+@RestController
 public class AanvraagController {
 
     @Autowired
@@ -28,6 +27,7 @@ public class AanvraagController {
     public @ResponseBody Aanvraag getAanvraag(@PathVariable("id") Integer id){
     	
         Aanvraag aanvraag = appelenEnPerenSessieService.zoekAanvraagMetId(id);
+        //Aanvraag aanvraag = new Aanvraag(1,"appelsap", 12);
         return aanvraag;
     }
 
@@ -68,6 +68,8 @@ public class AanvraagController {
     		throws BindException{
     	
     	appelenEnPerenSessieService.voegAanvraagToe(aanvraag);
+    	System.out.println(aanvraag.getNaam() + " " + aanvraag.getHoeveelheid() + "L "
+                + aanvraag.getType() + " voor " + aanvraag.getPrijs() + "€.");
         return aanvraag;
     }
 }
