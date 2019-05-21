@@ -29,7 +29,7 @@ public interface HetNestService {
     void deleteAanbiedingById (long id);
 
     List<Aanvraag> getAanvragen();
-
+    void aanvraagSturen(Aanvraag aanvraag);
     Ingredient getIngredientById(long id);
     List<Ingredient> getIngredienten();
     List<Ingredient> getAllIngredientenByStatus(String status);

@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -109,7 +110,7 @@ public class StepDefinitionsTest {
 
     @When("^I click the the ([^\"]*) link$")
     public void i_click_the_the_Lijst_van_alle_aanbiedingen_link(String linkTekst) throws Throwable {
-        driver.findElement(By.linkText(linkTekst)).click();
+        driver.findElement(By.id("lijstAllAanbiedingen")).click();
 
     }
 

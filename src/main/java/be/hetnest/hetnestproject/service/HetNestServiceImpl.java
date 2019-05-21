@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Set;
@@ -192,6 +193,13 @@ public class HetNestServiceImpl implements HetNestService {
     @Override
     public void deleteBrouwselById(long id){
         this.brouwselRepository.deleteById(id);
+    }
+
+    @Override
+    public void aanvraagSturen(Aanvraag aanvraag) {
+        RestTemplate rt = new RestTemplate();
+        rt.postForObject("http://localhost:8081/aanvraag", aanvraag, Aanvraag.class);
+        System.out.println("Nieuwe aanvraag toegevoegd: " + aanvraag.getHoeveelheid() + "L " + aanvraag.getNaam());
     }
 
 }
