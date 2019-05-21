@@ -16,11 +16,14 @@
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Numans');
 
@@ -40,36 +43,53 @@
             color: white;
         }
 
-        .button{
+        .button {
             color: black;
             background-color: #FFC312;
             /*width: 100px;*/
         }
 
-        .button:hover{
+        .button:hover {
             color: black;
             background-color: white;
+        }
+
+        #userrole {
+            color: white;
+            font-size: 40px;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        a:hover {
+            color: red;
+        }
+        li:hover {
+            background-color: #FFC312;
+        }
+        .lihover:hover {
+            background-color: #FFC312;
         }
     </style>
 </head>
 <body>
 <div th:replace="header :: header">Header</div>
-<div class="container">
-    <p th:text="${userrole}"></p>
-    <a th:href="@{/nieuweBrouwsel.html}">Nieuwe Brouwsel</a>
-    <div class="text-left d-flex flex-row">
-        <div class="p-4">
-            <h2>Brouwsels</h2>
-            <ul style="list-style-type: none;">
-                <li th:each="brouwsel : ${nieuweBrouwsels}">
-                    <a th:href="@{/brouwsel.html(id=${brouwsel.getId()})}">
-                        <span th:text="${brouwsel.naam}"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+<p th:text="${userrole}" id="userrole"></p>
+<a th:href="@{/nieuweBrouwsel.html}" class="btn button">Nieuwe Brouwsel</a>
+<div class="text-left d-flex flex-row">
+    <div class="p-4">
+        <h2>Brouwsels</h2>
+        <ul style="list-style-type: none;">
+            <li style="width: 300px;" th:each="brouwsel : ${nieuweBrouwsels}" class="list-group-item d-flex justify-content-between align-items-center">
+                <a th:href="@{/brouwsel.html(id=${brouwsel.getId()})}">
+                    <span th:text="${brouwsel.naam}"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <div th:replace="footer :: footer">&copy; 2013 The Static Templates</div>
-</div>
 </body>
 </html>

@@ -3,10 +3,10 @@
 <head>
     <title>HetNest - aanbieding</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>-->
     <link href="../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -21,6 +21,45 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Numans');
+
+        html, body {
+            background-image: url('https://scontent.fbru1-1.fna.fbcdn.net/v/t1.0-9/1780755_559949407445203_267544886_n.jpg?_nc_cat=106&_nc_ht=scontent.fbru1-1.fna&oh=7eaec92bb5bca598105ba26fcbc0fe82&oe=5D621183');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+        }
+
+        .container {
+            align-content: ;
+        }
+
+        .card-header h3 {
+            color: white;
+        }
+
+        .button{
+            color: black;
+            background-color: #FFC312;
+            /*width: 100px;*/
+        }
+
+        .button:hover{
+            color: black;
+            background-color: white;
+        }
+        p {
+            color: white;
+        }
+        h1 {
+            color: white;
+        }
+        .lihover:hover {
+            background-color: #FFC312;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="header :: header">Header</div>
@@ -34,7 +73,7 @@
         <br>
 
         <table style="float: left">
-            <caption>Klaargezette ingrdienten</caption>
+            <caption>Klaargezetten ingrdienten</caption>
             <thead>
             <tr>
                 <th> Ingrediënt</th>
@@ -72,26 +111,26 @@
         <br>
         <div th:if="${userrole =='PRODUCTIELID'}">
             <p>
-                <a th:href="@{/updateBrouwsel.html(id=${brouwsel.id})}">Brouwsel wijzigen</a>
+                <a th:href="@{/updateBrouwsel.html(id=${brouwsel.id})}" class="btn button">Brouwsel wijzigen</a>
             </p>
             <p>
-                <a th:href="@{/brouwselVerwijder.html(id=${brouwsel.id})}">Brouwsel verwijderen</a>
+                <a th:href="@{/brouwselVerwijder.html(id=${brouwsel.id})}" class="btn button">Brouwsel verwijderen</a>
             </p>
             <p>
-                <a th:href="@{/aanbiedingKlaarzetten.html(id=${brouwsel.id})}">Ingredienten klaarzetten</a>
+                <a th:href="@{/aanbiedingKlaarzetten.html(id=${brouwsel.id})}" class="btn button">Ingredienten klaarzetten</a>
             </p>
             <p>
-                <a th:href="@{/extraGrondstoffen.html(id=${brouwsel.id})}">Extra ingrdienten toevoegen</a>
+                <a th:href="@{/extraGrondstoffen.html(id=${brouwsel.id})}" class="btn button">Extra ingrdienten toevoegen</a>
             </p>
         </div>
         <form th:if="${userrole =='MAGAZIJNIER'}" th:action="@{/klaargezetUitVoorraad}" th:object="${brouwsel}"
               method="post">
             <input type="hidden" th:field="*{id}"/>
-            <button type="submit">Klaargezette/extra ingredienten uit voorraad halen</button>
+            <button type="submit" class="btn button">Klaargezetten/extra ingredienten uit voorraad halen</button>
         </form>
 
 
-        <a th:href="@{/brouwsels.html}">Lijst van alle brouwsel</a>
+        <a th:href="@{/brouwsels.html}" class="btn button">Lijst van alle brouwsel</a>
 
         <br>
 
