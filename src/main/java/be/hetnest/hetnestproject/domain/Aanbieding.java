@@ -20,7 +20,7 @@ public class Aanbieding {
     private String status;
 
     @Column
-    @Min(message = "Hoeveelheid mag niet negatief zijn.", value = 0)
+    @Min(message = "Hoeveelheid mag niet kleiner dan of gelijk zijn aan nul.", value = 1)
     private int hoeveelheid;
 
     @Column

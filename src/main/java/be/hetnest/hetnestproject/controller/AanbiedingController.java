@@ -88,10 +88,6 @@ public class AanbiedingController {
                 }
 
             }
-
-
-
-
             hetNestService.updateAanbieding(aanbieding);
         }
 
@@ -113,9 +109,11 @@ public class AanbiedingController {
     @RequestMapping(value="markeerAanbiedingDringend", method = RequestMethod.POST)
     public String markeerAanbiedingDringend (@RequestParam Long id) {
         Aanbieding aanbieding = hetNestService.getAanbiedingById(id);
-
-        if (aanbieding.getStatus() == "goedgekeurd"){
+        System.out.println(aanbieding.getNaam());
+        System.out.println(aanbieding.getStatus());
+        if (aanbieding.getStatus().equalsIgnoreCase("goedgekeurd")){
             aanbieding.setStatus("dringend");
+            System.out.println(aanbieding.getStatus());
             hetNestService.updateAanbieding(aanbieding);
         }
 
@@ -177,6 +175,7 @@ public class AanbiedingController {
     @RequestMapping(value = {"/externeAanbieding"}, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody Aanbieding createExterneAanbieding(@RequestBody Aanbieding aanbieding, HttpServletResponse response) throws BindException {
+        aanbieding.setStatus("nieuw");
         hetNestService.voegAanbiedingToeREST(aanbieding);
         return aanbieding;
     }
